@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'lt.bit.java2.jpa'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
+// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.3.Final'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
