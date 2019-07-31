@@ -1,15 +1,14 @@
 package lt.bit.java2.jpa.entities;
 
-import org.hibernate.annotations.Type;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
+@Data
 public class Employee {
 
     @Id
@@ -23,60 +22,19 @@ public class Employee {
     private String lastName;
 
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "hire_date")
-    private Date hireDate;
+    private LocalDate hireDate;
 
-    @Column(name = "gender")
-    @Convert(converter = GenderConverter.class)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", columnDefinition = "enum('M','F')")
     private Gender gender;
 
-    public Integer getEmpNo() {
-        return empNo;
-    }
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    private List<Title> titles;
 
-    public void setEmpNo(Integer empNo) {
-        this.empNo = empNo;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public String getFullName(){
+        return this.getFirstName() + " " + this.getLastName();
     }
 }

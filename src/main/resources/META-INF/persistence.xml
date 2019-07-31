@@ -4,6 +4,7 @@
     <!-- Define persistence unit -->
     <persistence-unit name="my-persistence-unit">
         <class>lt.bit.java2.jpa.entities.Employee</class>
+        <class>lt.bit.java2.jpa.entities.Title</class>
         <properties>
             <!-- database connection -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
