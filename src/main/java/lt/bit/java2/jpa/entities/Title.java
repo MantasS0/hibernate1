@@ -12,8 +12,9 @@ import java.time.LocalDate;
 public class Title {
 
     @Id
-    @Column(name = "emp_no", insertable = false, updatable = false)
-    private Integer empNo;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "emp_no", referencedColumnName = "emp_no")
+    private Employee employee;
 
     @Id
     private String title;
@@ -25,8 +26,5 @@ public class Title {
     @Column(name = "to_date")
     private LocalDate toDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no", referencedColumnName = "emp_no")
-    private Employee employee;
 
 }

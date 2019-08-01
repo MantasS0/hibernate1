@@ -15,15 +15,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class TitlePK implements Serializable {
 
-    @Id
-    @Column(name = "emp_no", insertable = false, updatable = false)
-    private Integer empNo;
+    private Employee employee;
 
-    @Id
     private String title;
 
-    @Id
-    @Column(name = "from_date")
     private LocalDate fromDate;
 
 }
